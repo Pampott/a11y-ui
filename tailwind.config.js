@@ -4,23 +4,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Design tokens — semantic naming
         brand: {
-          DEFAULT: '#1f4e5f',
-          hover: '#163a47',
-          subtle: '#e6eef0',
+          DEFAULT: '#A8431F',
+          hover: '#8A3618',
+          subtle: '#F8E7DF',
         },
         danger: {
-          DEFAULT: '#b3261e',
-          subtle: '#fce8e6',
+          DEFAULT: '#B3261E',
+          subtle: '#F7DAD4',
         },
         success: {
-          DEFAULT: '#1e6b43',
-          subtle: '#e6f2eb',
+          DEFAULT: '#2C6347',
+          subtle: '#D9EBE0',
         },
         warning: {
-          DEFAULT: '#8a5a00',
-          subtle: '#fdf0d5',
+          DEFAULT: '#8A5A00',
+          subtle: '#F8E6CA',
         },
       },
       borderRadius: {
