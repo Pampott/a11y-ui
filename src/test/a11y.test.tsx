@@ -7,6 +7,7 @@ import { Badge } from '../components/Badge';
 import { SkipLink } from '../components/SkipLink';
 import { Combobox } from '../components/Combobox';
 import { Tooltip } from '../components/Tooltip';
+import { Accordion } from '../components/Accordion';
 
 /**
  * Automated accessibility tests.
@@ -78,6 +79,19 @@ describe('Accessibility — no axe violations', () => {
       <Tooltip content="Helpful hint">
         <button type="button">Help</button>
       </Tooltip>
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('Accordion (one panel open)', async () => {
+    const { container } = render(
+      <Accordion
+        defaultOpen={['shipping']}
+        items={[
+          { id: 'shipping', title: 'Shipping', content: 'Ships in 2 days.' },
+          { id: 'returns', title: 'Returns', content: '30-day returns.' },
+        ]}
+      />
     );
     expect(await axe(container)).toHaveNoViolations();
   });

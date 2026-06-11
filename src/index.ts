@@ -19,3 +19,6 @@ export type { SkipLinkProps } from './components/SkipLink';
 
 export { Combobox } from './components/Combobox';
 export type { ComboboxProps, ComboboxOption } from './components/Combobox';
+
+export { Accordion } from './components/Accordion';
+export type { AccordionProps, AccordionItem } from './components/Accordion';
