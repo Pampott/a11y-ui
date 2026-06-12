@@ -28,3 +28,6 @@ export type { TabsProps, TabItem } from './components/Tabs';
 
 export { ToastProvider, useToast } from './components/Toast';
 export type { ToastOptions, ToastTone } from './components/Toast';
+
+export { Switch } from './components/Switch';
+export type { SwitchProps } from './components/Switch';
