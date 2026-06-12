@@ -1,5 +1,7 @@
 # a11y-ui
 
+[![CI](https://github.com/Pampott/a11y-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/Pampott/a11y-ui/actions/workflows/ci.yml)
+
 An accessible React component library — built to **WCAG 2.2** standards, documented in **Storybook**, and tested with **axe-core**.
 
 Most component libraries look accessible. This one proves it: every component ships with automated accessibility tests that **fail the build** if an ARIA attribute, label, or focus behaviour regresses.
