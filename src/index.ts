@@ -25,3 +25,6 @@ export type { AccordionProps, AccordionItem } from './components/Accordion';
 
 export { Tabs } from './components/Tabs';
 export type { TabsProps, TabItem } from './components/Tabs';
+
+export { ToastProvider, useToast } from './components/Toast';
+export type { ToastOptions, ToastTone } from './components/Toast';

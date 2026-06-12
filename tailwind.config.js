@@ -44,10 +44,20 @@ export default {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
+        'toast-in': {
+          from: { opacity: '0', transform: 'translateX(1rem)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        'toast-out': {
+          from: { opacity: '1', transform: 'translateX(0)' },
+          to: { opacity: '0', transform: 'translateX(1rem)' },
+        },
       },
       animation: {
-        // Neutralised by the global prefers-reduced-motion guard.
+        // All neutralised by the global prefers-reduced-motion guard.
         'fade-in': 'fade-in 200ms cubic-bezier(0.2, 0, 0, 1)',
+        'toast-in': 'toast-in 200ms cubic-bezier(0.2, 0, 0, 1)',
+        'toast-out': 'toast-out 180ms cubic-bezier(0.3, 0, 0.2, 1) forwards',
       },
     },
   },
