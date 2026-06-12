@@ -1,0 +1,13 @@
+# This repository is a component library, not a website — it has no index.html
+# entry by design. Its only deployable artifact is the Storybook.
+#
+# Without this file Netlify auto-detects a Vite project and runs `vite build`,
+# which fails with "Could not resolve entry module index.html". These settings
+# pin the correct build (they override Netlify's UI/auto-detected command).
+[build]
+  command = "npm run build-storybook"
+  publish = "storybook-static"
+
+[build.environment]
+  # Match the Node version used by the GitHub Actions Storybook build.
+  NODE_VERSION = "22"
