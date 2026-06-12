@@ -39,6 +39,16 @@ export default {
         standard: 'cubic-bezier(0.2, 0, 0, 1)',
         emphasized: 'cubic-bezier(0.3, 0, 0.2, 1)',
       },
+      keyframes: {
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+      },
+      animation: {
+        // Neutralised by the global prefers-reduced-motion guard.
+        'fade-in': 'fade-in 200ms cubic-bezier(0.2, 0, 0, 1)',
+      },
     },
   },
   plugins: [],

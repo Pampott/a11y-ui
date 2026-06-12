@@ -22,3 +22,6 @@ export type { ComboboxProps, ComboboxOption } from './components/Combobox';
 
 export { Accordion } from './components/Accordion';
 export type { AccordionProps, AccordionItem } from './components/Accordion';
+
+export { Tabs } from './components/Tabs';
+export type { TabsProps, TabItem } from './components/Tabs';
