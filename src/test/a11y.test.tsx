@@ -8,6 +8,8 @@ import { SkipLink } from '../components/SkipLink';
 import { Combobox } from '../components/Combobox';
 import { Tooltip } from '../components/Tooltip';
 import { Accordion } from '../components/Accordion';
+import { Tabs } from '../components/Tabs';
+import { Switch } from '../components/Switch';
 
 /**
  * Automated accessibility tests.
@@ -90,6 +92,29 @@ describe('Accessibility — no axe violations', () => {
         items={[
           { id: 'shipping', title: 'Shipping', content: 'Ships in 2 days.' },
           { id: 'returns', title: 'Returns', content: '30-day returns.' },
+        ]}
+      />
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('Switch (on and off)', async () => {
+    const { container } = render(
+      <div>
+        <Switch label="Email notifications" defaultChecked />
+        <Switch label="Dark mode" />
+      </div>
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('Tabs', async () => {
+    const { container } = render(
+      <Tabs
+        label="Product information"
+        tabs={[
+          { id: 'overview', label: 'Overview', content: 'Overview content.' },
+          { id: 'specs', label: 'Specs', content: 'Spec content.' },
         ]}
       />
     );

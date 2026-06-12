@@ -22,3 +22,15 @@ export type { ComboboxProps, ComboboxOption } from './components/Combobox';
 
 export { Accordion } from './components/Accordion';
 export type { AccordionProps, AccordionItem } from './components/Accordion';
+
+export { Tabs } from './components/Tabs';
+export type { TabsProps, TabItem } from './components/Tabs';
+
+export { ToastProvider, useToast } from './components/Toast';
+export type { ToastOptions, ToastTone } from './components/Toast';
+
+export { Switch } from './components/Switch';
+export type { SwitchProps } from './components/Switch';
+
+export { DropdownMenu } from './components/DropdownMenu';
+export type { DropdownMenuProps, DropdownMenuItem } from './components/DropdownMenu';
