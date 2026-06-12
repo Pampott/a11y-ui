@@ -31,3 +31,6 @@ export type { ToastOptions, ToastTone } from './components/Toast';
 
 export { Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
+
+export { DropdownMenu } from './components/DropdownMenu';
+export type { DropdownMenuProps, DropdownMenuItem } from './components/DropdownMenu';

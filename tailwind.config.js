@@ -52,12 +52,22 @@ export default {
           from: { opacity: '1', transform: 'translateX(0)' },
           to: { opacity: '0', transform: 'translateX(1rem)' },
         },
+        'menu-in': {
+          from: { opacity: '0', transform: 'scale(0.96)' },
+          to: { opacity: '1', transform: 'scale(1)' },
+        },
+        'menu-out': {
+          from: { opacity: '1', transform: 'scale(1)' },
+          to: { opacity: '0', transform: 'scale(0.96)' },
+        },
       },
       animation: {
         // All neutralised by the global prefers-reduced-motion guard.
         'fade-in': 'fade-in 200ms cubic-bezier(0.2, 0, 0, 1)',
         'toast-in': 'toast-in 200ms cubic-bezier(0.2, 0, 0, 1)',
         'toast-out': 'toast-out 180ms cubic-bezier(0.3, 0, 0.2, 1) forwards',
+        'menu-in': 'menu-in 120ms cubic-bezier(0.2, 0, 0, 1)',
+        'menu-out': 'menu-out 100ms cubic-bezier(0.3, 0, 0.2, 1) forwards',
       },
     },
   },
