@@ -15,7 +15,7 @@ export interface DropdownMenuItem {
 export interface DropdownMenuProps {
   /**
    * The trigger element (e.g. a <Button>). It must forward its ref, so Radix
-   * can manage focus — passed through with `asChild`.
+   * can manage focus, passed through with `asChild`.
    */
   trigger: React.ReactElement;
   items: DropdownMenuItem[];
@@ -26,7 +26,7 @@ export interface DropdownMenuProps {
  * Dropdown menu built on Radix UI primitives.
  *
  * Why Radix here and not hand-rolled like the rest of the library: a menu is one
- * of the hardest patterns to get right — roving focus, type-ahead, collision-
+ * of the hardest patterns to get right: roving focus, type-ahead, collision-
  * aware positioning, focus return, and outside-press/Escape dismissal. Radix
  * ships all of that, correct and battle-tested, so the professional choice is to
  * compose on top of it rather than reimplement it. This component's job is the

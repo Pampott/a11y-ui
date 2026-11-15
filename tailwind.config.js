@@ -28,7 +28,7 @@ export default {
       ringWidth: {
         focus: '3px',
       },
-      // Motion tokens — shared vocabulary so every component animates with the
+      // Motion tokens: shared vocabulary so every component animates with the
       // same rhythm. Mirrored in src/styles/motion.ts for use from JS.
       transitionDuration: {
         fast: '120ms',

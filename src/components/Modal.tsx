@@ -5,7 +5,7 @@ import { cn } from '../lib/cn';
 export interface ModalProps {
   open: boolean;
   onClose: () => void;
-  /** Accessible title — linked via aria-labelledby. Required. */
+  /** Accessible title: linked via aria-labelledby. Required. */
   title: string;
   children: React.ReactNode;
   className?: string;
@@ -21,7 +21,7 @@ const FOCUSABLE =
  * - role="dialog" + aria-modal="true" + aria-labelledby on the title.
  * - Focus is moved into the dialog on open and restored to the trigger on close.
  * - Focus is trapped: Tab / Shift+Tab cycle within the dialog only.
- * - Escape closes the dialog (WCAG 2.1.2 — no keyboard trap).
+ * - Escape closes the dialog (WCAG 2.1.2, no keyboard trap).
  * - Clicking the backdrop closes; the backdrop is aria-hidden.
  */
 export function Modal({ open, onClose, title, children, className }: ModalProps) {
@@ -80,7 +80,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop — decorative, hidden from assistive tech */}
+      {/* Backdrop: decorative, hidden from assistive tech */}
       <div
         className="absolute inset-0 bg-black/50"
         aria-hidden="true"

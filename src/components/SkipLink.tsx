@@ -8,8 +8,8 @@ export interface SkipLinkProps {
 }
 
 /**
- * Skip link — lets keyboard and screen-reader users jump past repeated
- * navigation straight to the main content (WCAG 2.4.1 — bypass blocks).
+ * Skip link: lets keyboard and screen-reader users jump past repeated
+ * navigation straight to the main content (WCAG 2.4.1, bypass blocks).
  *
  * Accessibility notes:
  * - Visually hidden until focused, then appears at the top of the page.

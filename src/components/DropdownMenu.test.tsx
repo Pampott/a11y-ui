@@ -54,7 +54,7 @@ describe('DropdownMenu', () => {
     await user.click(screen.getByRole('button', { name: 'Actions' }));
     // `region` is a page-structure best practice (all content inside a landmark).
     // Radix portals the menu to <body>, so in an isolated component test there is
-    // no surrounding landmark by definition — irrelevant to this component's a11y.
+    // no surrounding landmark by definition, irrelevant to this component's a11y.
     expect(
       await axe(baseElement, { rules: { region: { enabled: false } } })
     ).toHaveNoViolations();

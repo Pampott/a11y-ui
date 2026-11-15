@@ -11,8 +11,8 @@ export interface AccordionItem {
 export interface AccordionProps {
   items: AccordionItem[];
   /**
-   * 'single' — only one panel open at a time (default).
-   * 'multiple' — any number of panels can be open at once.
+   * 'single': only one panel open at a time (default).
+   * 'multiple': any number of panels can be open at once.
    */
   type?: 'single' | 'multiple';
   /** Ids of the panels open on first render. */

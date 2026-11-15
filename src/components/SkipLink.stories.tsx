@@ -9,7 +9,7 @@ const meta: Meta<typeof SkipLink> = {
     docs: {
       description: {
         component:
-          'Skip link (WCAG 2.4.1 — bypass blocks). Visually hidden until focused. Press Tab when this story is focused to reveal it. Must be the first focusable element on the page.',
+          'Skip link (WCAG 2.4.1, bypass blocks). Visually hidden until focused. Press Tab when this story is focused to reveal it. Must be the first focusable element on the page.',
       },
     },
   },

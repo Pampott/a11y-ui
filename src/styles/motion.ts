@@ -7,7 +7,7 @@
  * Tailwind classes (`duration-base ease-standard`) or inline styles / JS.
  *
  * The global reduced-motion guard in styles/globals.css neutralises these for
- * users who request reduced motion — components do not need to re-check.
+ * users who request reduced motion, so components do not need to re-check.
  */
 export const duration = {
   fast: 120,
@@ -16,7 +16,7 @@ export const duration = {
 } as const;
 
 export const easing = {
-  /** Default entrance/exit — decelerates into place. */
+  /** Default entrance/exit: decelerates into place. */
   standard: 'cubic-bezier(0.2, 0, 0, 1)',
   /** For larger, more expressive moves. */
   emphasized: 'cubic-bezier(0.3, 0, 0.2, 1)',

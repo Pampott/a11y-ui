@@ -9,7 +9,7 @@ const meta: Meta<typeof Tabs> = {
     docs: {
       description: {
         component:
-          'Accessible tabs following the WAI-ARIA APG pattern with automatic activation. Roving tabindex keeps a single tab in the page tab order, Left/Right/Home/End move and activate, and the active-tab indicator slides while the panel fades in — both disabled under prefers-reduced-motion.',
+          'Accessible tabs following the WAI-ARIA APG pattern with automatic activation. Roving tabindex keeps a single tab in the page tab order, Left/Right/Home/End move and activate, and the active-tab indicator slides while the panel fades in, both disabled under prefers-reduced-motion.',
       },
     },
   },
@@ -31,7 +31,7 @@ const tabs = [
   {
     id: 'reviews',
     label: 'Reviews',
-    content: 'What customers think — ratings, highlights and common feedback.',
+    content: 'What customers think: ratings, highlights and common feedback.',
   },
 ];
 
