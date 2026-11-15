@@ -80,7 +80,45 @@ Knowing **which** approach a given problem calls for is the actual skill. Buildi
 npm install
 npm run storybook     # explore components with the a11y addon
 npm run test          # run axe-core accessibility tests
+npm run build         # build the library into dist/
 ```
+
+---
+
+## Using it in an application
+
+The library is not published on npm yet. Install it from GitHub, pinned to a tag so an application never picks up an unreleased change:
+
+```bash
+npm install github:Pampott/a11y-ui#v0.2.0
+```
+
+npm builds the library on install (the `prepare` script), so there is no build output committed to the repository.
+
+The components ship as JavaScript that carries Tailwind class names, with no stylesheet: the application generates the CSS with its own Tailwind 3. Two lines of configuration make that work.
+
+```js
+// tailwind.config.js of the application
+import a11yUi from 'a11y-ui/tailwind-preset';
+
+export default {
+  // 1. The design tokens (brand colours, radius, focus ring, motion) and the
+  //    global prefers-reduced-motion guard.
+  presets: [a11yUi],
+  content: [
+    './index.html',
+    './src/**/*.{ts,tsx}',
+    // 2. Lets Tailwind see the class names used inside the components.
+    './node_modules/a11y-ui/dist/**/*.js',
+  ],
+};
+```
+
+```tsx
+import { Button, Input } from 'a11y-ui';
+```
+
+Without the preset the components render unstyled, and without the `content` entry Tailwind purges their classes. React 18 or later and Tailwind CSS 3.4 are peer dependencies.
 
 ## Tech stack
 
