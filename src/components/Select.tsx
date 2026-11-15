@@ -64,7 +64,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           className={cn(
             'h-10 rounded-token border bg-white px-3 text-base',
             'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-offset-1 focus-visible:ring-brand',
-            error ? 'border-danger' : 'border-gray-400',
+            error ? 'border-danger' : 'border-gray-500',
             className
           )}
           {...props}

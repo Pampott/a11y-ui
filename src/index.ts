@@ -5,6 +5,9 @@ export type { ButtonProps } from './components/Button';
 export { Input } from './components/Input';
 export type { InputProps } from './components/Input';
 
+export { Textarea } from './components/Textarea';
+export type { TextareaProps } from './components/Textarea';
+
 export { Modal } from './components/Modal';
 export type { ModalProps } from './components/Modal';
 

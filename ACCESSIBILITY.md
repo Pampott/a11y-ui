@@ -18,6 +18,19 @@ This document explains the accessibility reasoning behind each component. It map
 - **Errors set `aria-invalid` and use `role="alert"`** so the error is announced immediately when it appears: **3.3.1 (Error Identification)**.
 - **Required fields use `aria-required`**, not just a visual asterisk.
 
+## Textarea
+
+- **Same contract as `Input`**: visible label linked with `htmlFor`/`id`, hint and error linked with `aria-describedby`, `aria-invalid` and `role="alert"` on error (**1.3.1**, **3.3.1**, **4.1.2**).
+- **Vertical resize only**: the user can enlarge the field without it overflowing the page horizontally (**1.4.10 Reflow**).
+
+## Localising the hidden "required" text
+
+`Fieldset`, `RadioGroup` and `Checkbox` add a screen-reader-only " (required)" after the name of a required control. On a page in another language, an English word read with the page's voice is wrong (**3.1.2 Language of Parts**). The `requiredLabel` prop replaces it, e.g. `requiredLabel=" (obligatoire)"`.
+
+## Field border contrast
+
+Text fields and selects use a `gray-500` border: 4.83:1 on white, above the 3:1 required for the boundary of a control (**1.4.11 Non-text Contrast**). The previous `gray-400` border was 2.54:1.
+
 ## Modal
 
 Follows the [WAI-ARIA Dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/):

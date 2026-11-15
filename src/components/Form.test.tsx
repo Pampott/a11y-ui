@@ -28,6 +28,22 @@ describe('Fieldset', () => {
   });
 });
 
+describe('Required label', () => {
+  it('can be localised on a group and on a checkbox', () => {
+    render(
+      <>
+        <Fieldset legend="Choisissez" required requiredLabel=" (obligatoire)">
+          <Checkbox label="Option" />
+        </Fieldset>
+        <Checkbox label="J'accepte" required requiredLabel=" (obligatoire)" />
+      </>
+    );
+    expect(screen.getByRole('group', { name: 'Choisissez (obligatoire)' })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: "J'accepte (obligatoire)" })).toBeInTheDocument();
+    expect(screen.queryByText(/required/)).not.toBeInTheDocument();
+  });
+});
+
 describe('RadioGroup', () => {
   it('exposes each option with its label and hint inside the named group', async () => {
     const { container } = render(

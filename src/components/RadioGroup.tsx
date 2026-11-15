@@ -22,6 +22,8 @@ export interface RadioGroupProps {
   hint?: string;
   error?: string;
   required?: boolean;
+  /** Passed to the Fieldset: screen-reader text for a required group. */
+  requiredLabel?: string;
   /**
    * Id given to the first radio. An ErrorSummary link can point to it, so
    * following the link lands on the first option of the group.
@@ -52,6 +54,7 @@ export function RadioGroup({
   hint,
   error,
   required,
+  requiredLabel,
   id,
   className,
 }: RadioGroupProps) {
@@ -62,7 +65,14 @@ export function RadioGroup({
   const selected = isControlled ? value : internal;
 
   return (
-    <Fieldset legend={legend} hint={hint} error={error} required={required} className={className}>
+    <Fieldset
+      legend={legend}
+      hint={hint}
+      error={error}
+      required={required}
+      requiredLabel={requiredLabel}
+      className={className}
+    >
       {options.map((option, index) => {
         const optionId = index === 0 ? baseId : `${baseId}-${index}`;
         const optionHintId = `${optionId}-hint`;
