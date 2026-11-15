@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Pampott/a11y-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/Pampott/a11y-ui/actions/workflows/ci.yml)
 
-An accessible React component library — built to **WCAG 2.2** standards, documented in **Storybook**, and tested with **axe-core**.
+An accessible React component library, built to **WCAG 2.2** standards, documented in **Storybook**, and tested with **axe-core**.
 
 Most component libraries look accessible. This one proves it: every component ships with automated accessibility tests that **fail the build** if an ARIA attribute, label, or focus behaviour regresses.
 
@@ -10,12 +10,12 @@ Most component libraries look accessible. This one proves it: every component sh
 
 ## Why this exists
 
-Accessibility is usually treated as an afterthought — a checklist run once before launch. This library takes the opposite approach: accessibility is part of the component contract, verified on every commit.
+Accessibility is usually treated as an afterthought, a checklist run once before launch. This library takes the opposite approach: accessibility is part of the component contract, verified on every commit.
 
-- **Hand-built** following the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) — the patterns are implemented, not hidden behind a black box (see [Build philosophy](#build-philosophy) for the one deliberate exception).
-- **Keyboard-first** — every interactive component works without a mouse.
-- **Motion that respects the user** — animations are token-driven and globally disabled under `prefers-reduced-motion` (WCAG 2.3.3).
-- **Screen-reader tested** — VoiceOver and NVDA, plus automated axe-core scans.
+- **Hand-built** following the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/): the patterns are implemented, not hidden behind a black box (see [Build philosophy](#build-philosophy) for the one deliberate exception).
+- **Keyboard-first**: every interactive component works without a mouse.
+- **Motion that respects the user**: animations are token-driven and globally disabled under `prefers-reduced-motion` (WCAG 2.3.3).
+- **Screen-reader tested**: VoiceOver and NVDA, plus automated axe-core scans.
 - **TypeScript** throughout, with full prop typing.
 
 ---
@@ -35,21 +35,31 @@ Accessibility is usually treated as an afterthought — a checklist run once bef
 | `Tabs` | WAI-ARIA Tabs | Roving tabindex, arrow/Home/End nav, sliding indicator, single reused panel |
 | `Toast` | Live region | `role="status"`/`"alert"`, auto-dismiss **pauses on hover & focus** (2.2.1) |
 | `Switch` | WAI-ARIA Switch | `role="switch"` + `aria-checked`, controlled/uncontrolled, Space/Enter toggle |
-| `DropdownMenu` | WAI-ARIA Menu *(on Radix)* | Roving focus, type-ahead, collision-aware positioning, focus return — see below |
+| `DropdownMenu` | WAI-ARIA Menu *(on Radix)* | Roving focus, type-ahead, collision-aware positioning, focus return (see below) |
+| `Fieldset` | Native group | `<fieldset>` + `<legend>`, group-level hint and error linked with `aria-describedby` |
+| `RadioGroup` | Native radio group | One tab stop, arrow-key navigation, per-option hints, "required" written out |
+| `Checkbox` | Native checkbox | Linked label as click target, `aria-invalid` + `role="alert"` errors |
+| `Select` | Native select | Linked label, hint and error; native picker and type-ahead kept on purpose |
+| `ErrorSummary` | Error summary | Takes focus after a failed submit, lists each error as a link to its field (3.3.1, 3.3.3) |
+| `QuantityStepper` | Stepper | Buttons named after the action and the item, live announcement (4.1.3), focus kept at a bound |
+| `Steps` | Progress indicator | `<nav>` + ordered list, `aria-current="step"`, state never by colour alone (1.4.1) |
+| `Carousel` | WAI-ARIA Carousel | Named controls first, slide position announced, rotation can be paused and respects reduced motion (2.2.2) |
 
 ---
 
 ## Remediation examples
 
-Building accessible components is half the job; the other half is fixing the ones that already exist. `src/remediation/` holds three patterns as they are commonly found on e-commerce sites, each next to its corrected version (Storybook: **Remediation → Before and after**).
+Building accessible components is half the job; the other half is fixing the ones that already exist. `src/remediation/` holds five patterns as they are commonly found on e-commerce sites, each next to its corrected version (Storybook: **Remediation → Before and after**).
 
 | Example | Faults in the "before" version | Caught by axe-core? |
 |---------|--------------------------------|---------------------|
 | Form field with error | Placeholder as label, error not linked or announced, no fix suggested, no `autocomplete`, focus outline removed | No |
 | Icon-only button | No accessible name, 16 px target | Yes (`button-name`) |
 | Modal dialog | No dialog role or name, focus left behind, mouse-only close, no Escape | No |
+| Radio group | Options without labels, question not linked to its options, only the circle is clickable | Partly (`label` only) |
+| Quantity stepper | Minus and plus are `<span>`s, unlabelled field, silent value change | Partly (`label` only) |
 
-Two of the three pass an automated scan. That is the point: each pair is tested from both sides in `remediation.test.tsx`. The "before" version must exhibit the fault and the "after" version must not, with keyboard and accessible-name assertions where axe is blind.
+An automated scan misses most of these faults. That is the point: each pair is tested from both sides in `remediation.test.tsx`. The "before" version must exhibit the fault and the "after" version must not, with keyboard and accessible-name assertions where axe is blind.
 
 ---
 
@@ -57,10 +67,10 @@ Two of the three pass an automated scan. That is the point: each pair is tested 
 
 Two kinds of component live in this library, on purpose:
 
-- **Hand-built (the majority)** — implemented directly against the WAI-ARIA Authoring Practices. The point is to *demonstrate* the patterns: roving tabindex, live regions, focus management, `inert`, timing controls. If you want to see how an accessible component actually works under the hood, read the source.
-- **Composed on a headless primitive (`DropdownMenu`, on [Radix UI](https://www.radix-ui.com/))** — some patterns are genuinely hard to get right by hand: a menu needs roving focus, type-ahead, collision-aware positioning, focus return and outside-press dismissal. Reimplementing all of that is how subtle accessibility bugs get shipped. The professional choice is to compose on a battle-tested primitive and own the *design-system layer* on top: tokens, styling, motion and axe coverage.
+- **Hand-built (the majority)**: implemented directly against the WAI-ARIA Authoring Practices. The point is to *demonstrate* the patterns: roving tabindex, live regions, focus management, `inert`, timing controls. If you want to see how an accessible component actually works under the hood, read the source.
+- **Composed on a headless primitive (`DropdownMenu`, on [Radix UI](https://www.radix-ui.com/))**: some patterns are genuinely hard to get right by hand: a menu needs roving focus, type-ahead, collision-aware positioning, focus return and outside-press dismissal. Reimplementing all of that is how subtle accessibility bugs get shipped. The professional choice is to compose on a battle-tested primitive and own the *design-system layer* on top: tokens, styling, motion and axe coverage.
 
-Knowing **which** approach a given problem calls for is the actual skill. Building everything from scratch is naïve; reaching for a styled library for everything hides whether you understand accessibility at all. This library shows both — and the judgement to tell them apart.
+Knowing **which** approach a given problem calls for is the actual skill. Building everything from scratch is naïve; reaching for a styled library for everything hides whether you understand accessibility at all. This library shows both: and the judgement to tell them apart.
 
 ---
 
@@ -88,14 +98,17 @@ npm run test
 
 ```
 ✓ Button, Input, Badge, SkipLink, Combobox, Tooltip   (axe scans)
-✓ Accordion   — toggle, aria wiring, arrow/Home/End focus nav
-✓ Tabs        — roving tabindex, automatic activation, panel labelling
-✓ Toast       — role status/alert, auto-dismiss, pause on hover
-✓ Switch      — controlled/uncontrolled, Space/Enter, disabled
-✓ DropdownMenu (Radix) — open, select, axe when open
+✓ Accordion: toggle, aria wiring, arrow/Home/End focus nav
+✓ Tabs: roving tabindex, automatic activation, panel labelling
+✓ Toast: role status/alert, auto-dismiss, pause on hover
+✓ Switch: controlled/uncontrolled, Space/Enter, disabled
+✓ DropdownMenu (Radix): open, select, axe when open
+✓ Form: Fieldset, RadioGroup, Checkbox, Select, ErrorSummary focus and links
+✓ Commerce: QuantityStepper bounds and announcements, Steps, Carousel rotation and pause
+✓ Remediation: each "before" exhibits its fault, each "after" does not
 ```
 
-> 38 tests across 6 files — every interactive component is covered for both
+> 73 tests across 9 files: every interactive component is covered for both
 > axe violations **and** keyboard behaviour.
 
 The Storybook `@storybook/addon-a11y` panel also runs axe live on every story, so you can see the accessibility tree and any violations while developing.
