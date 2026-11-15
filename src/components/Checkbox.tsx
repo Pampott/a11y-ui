@@ -9,6 +9,11 @@ export interface CheckboxProps
   hint?: string;
   /** Error message. When present, the checkbox is marked invalid and announced. */
   error?: string;
+  /**
+   * Text read by screen readers after the label of a required checkbox.
+   * Override it to match the page language, e.g. " (obligatoire)".
+   */
+  requiredLabel?: string;
 }
 
 /**
@@ -23,7 +28,10 @@ export interface CheckboxProps
  * - To group several checkboxes under one question, wrap them in a Fieldset.
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, hint, error, id, required, className, ...props }, ref) => {
+  (
+    { label, hint, error, id, required, requiredLabel = ' (required)', className, ...props },
+    ref
+  ) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
     const hintId = `${inputId}-hint`;
@@ -52,7 +60,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                   <span className="text-danger" aria-hidden="true">
                     {' '}*
                   </span>
-                  <span className="sr-only"> (required)</span>
+                  <span className="sr-only">{requiredLabel}</span>
                 </>
               )}
             </label>

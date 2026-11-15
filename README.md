@@ -26,6 +26,7 @@ Accessibility is usually treated as an afterthought, a checklist run once before
 |-----------|---------|----------------------------|
 | `Button` | Native button | Visible focus ring (2.4.7), required `iconOnlyLabel` for icon buttons |
 | `Input` | Labelled field | Linked label, `aria-describedby` hints, `aria-invalid` + `role="alert"` errors |
+| `Textarea` | Labelled multi-line field | Same contract as `Input`, vertical resize only (1.4.10) |
 | `Modal` | WAI-ARIA Dialog | Focus trap, Escape to close, focus restoration, `aria-modal` |
 | `Tooltip` | WAI-ARIA Tooltip | Shows on hover **and** focus (1.4.13), Escape to dismiss |
 | `Badge` | Status indicator | Contrast-checked tones (1.4.3), colour never the only signal |
@@ -146,7 +147,7 @@ npm run test
 ✓ Remediation: each "before" exhibits its fault, each "after" does not
 ```
 
-> 73 tests across 9 files: every interactive component is covered for both
+> 77 tests across 10 files: every interactive component is covered for both
 > axe violations **and** keyboard behaviour.
 
 The Storybook `@storybook/addon-a11y` panel also runs axe live on every story, so you can see the accessibility tree and any violations while developing.
