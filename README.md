@@ -39,6 +39,20 @@ Accessibility is usually treated as an afterthought — a checklist run once bef
 
 ---
 
+## Remediation examples
+
+Building accessible components is half the job; the other half is fixing the ones that already exist. `src/remediation/` holds three patterns as they are commonly found on e-commerce sites, each next to its corrected version (Storybook: **Remediation → Before and after**).
+
+| Example | Faults in the "before" version | Caught by axe-core? |
+|---------|--------------------------------|---------------------|
+| Form field with error | Placeholder as label, error not linked or announced, no fix suggested, no `autocomplete`, focus outline removed | No |
+| Icon-only button | No accessible name, 16 px target | Yes (`button-name`) |
+| Modal dialog | No dialog role or name, focus left behind, mouse-only close, no Escape | No |
+
+Two of the three pass an automated scan. That is the point: each pair is tested from both sides in `remediation.test.tsx`. The "before" version must exhibit the fault and the "after" version must not, with keyboard and accessible-name assertions where axe is blind.
+
+---
+
 ## Build philosophy
 
 Two kinds of component live in this library, on purpose:
