@@ -1,21 +1,42 @@
 {
   "name": "a11y-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An accessible React component library built with TypeScript, Tailwind CSS and tested against WCAG 2.2 with axe-core.",
   "type": "module",
   "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "tailwind-preset.js",
+    "tailwind-preset.d.ts"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tailwind-preset": {
+      "types": "./tailwind-preset.d.ts",
+      "default": "./tailwind-preset.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc -p tsconfig.build.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest run",
     "test:a11y": "vitest run --reporter verbose",
-    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static"
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "tailwindcss": ">=3.4 <4"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.17",
@@ -39,6 +60,8 @@
     "jest-axe": "^9.0.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "storybook": "^8.4.0",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.6.3",
