@@ -1,4 +1,4 @@
-# This repository is a component library, not a website — it has no index.html
+# This repository is a component library, not a website: it has no index.html
 # entry by design. Its only deployable artifact is the Storybook.
 #
 # Without this file Netlify auto-detects a Vite project and runs `vite build`,

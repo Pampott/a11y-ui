@@ -9,7 +9,7 @@ const meta: Meta<typeof Badge> = {
     docs: {
       description: {
         component:
-          'Status badge. Every tone pairs text and background to meet WCAG 1.4.3 contrast (>= 4.5:1). Colour is never the only signal — the label always carries the meaning.',
+          'Status badge. Every tone pairs text and background to meet WCAG 1.4.3 contrast (>= 4.5:1). Colour is never the only signal: the label always carries the meaning.',
       },
     },
   },

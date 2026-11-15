@@ -11,7 +11,7 @@ const meta: Meta<typeof DropdownMenu> = {
     docs: {
       description: {
         component:
-          'Dropdown menu composed on Radix UI primitives. Unlike the rest of this library (hand-built to demonstrate the ARIA patterns), a menu is deliberately delegated to a battle-tested headless primitive — roving focus, type-ahead, collision-aware positioning and focus return are hard to get right by hand. This component adds the design-system layer: tokens, styling, animation and axe coverage.',
+          'Dropdown menu composed on Radix UI primitives. Unlike the rest of this library (hand-built to demonstrate the ARIA patterns), a menu is deliberately delegated to a battle-tested headless primitive: roving focus, type-ahead, collision-aware positioning and focus return are hard to get right by hand. This component adds the design-system layer: tokens, styling, animation and axe coverage.',
       },
     },
   },

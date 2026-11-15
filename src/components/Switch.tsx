@@ -2,7 +2,7 @@ import { useId, useState, useCallback } from 'react';
 import { cn } from '../lib/cn';
 
 export interface SwitchProps {
-  /** Visible label — also the accessible name (WCAG 4.1.2). */
+  /** Visible label: also the accessible name (WCAG 4.1.2). */
   label: string;
   /** Controlled state. Omit to use the component uncontrolled. */
   checked?: boolean;

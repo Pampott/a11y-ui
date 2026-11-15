@@ -7,7 +7,7 @@ export interface ComboboxOption {
 }
 
 export interface ComboboxProps {
-  /** Visible label — always rendered and linked to the input (WCAG 1.3.1, 4.1.2). */
+  /** Visible label: always rendered and linked to the input (WCAG 1.3.1, 4.1.2). */
   label: string;
   options: ComboboxOption[];
   value?: string;

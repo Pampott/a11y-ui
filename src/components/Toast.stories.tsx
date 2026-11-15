@@ -11,7 +11,7 @@ const meta: Meta<typeof ToastProvider> = {
     docs: {
       description: {
         component:
-          'Accessible toast notifications. Each toast is a live region — role="status" (polite) for info/success, role="alert" (assertive) for danger — so it is announced without stealing focus. The auto-dismiss timer pauses on hover and keyboard focus (WCAG 2.2.1), and the slide+fade enter/exit is disabled under prefers-reduced-motion. Wrap your app in <ToastProvider> and call useToast().',
+          'Accessible toast notifications. Each toast is a live region (role="status", polite, for info/success; role="alert", assertive, for danger), so it is announced without stealing focus. The auto-dismiss timer pauses on hover and keyboard focus (WCAG 2.2.1), and the slide+fade enter/exit is disabled under prefers-reduced-motion. Wrap your app in <ToastProvider> and call useToast().',
       },
     },
   },

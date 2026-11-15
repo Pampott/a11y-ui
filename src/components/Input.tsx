@@ -2,7 +2,7 @@ import { forwardRef, useId } from 'react';
 import { cn } from '../lib/cn';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  /** Visible label — required for accessibility. Never use placeholder as a label. */
+  /** Visible label: required for accessibility. Never use placeholder as a label. */
   label: string;
   /** Optional helper text shown below the field. */
   hint?: string;

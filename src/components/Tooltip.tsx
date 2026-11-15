@@ -13,7 +13,7 @@ export interface TooltipProps {
  * Accessible tooltip.
  *
  * Accessibility notes:
- * - Shows on hover AND keyboard focus (WCAG 1.4.13 — content on hover/focus).
+ * - Shows on hover AND keyboard focus (WCAG 1.4.13, content on hover/focus).
  * - Linked to the trigger via aria-describedby so it is announced.
  * - Dismissible with Escape without moving pointer.
  * - The tooltip text is in the DOM (role="tooltip"), not a title attribute,

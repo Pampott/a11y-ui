@@ -41,7 +41,7 @@ const EXIT_MS = 200;
  * Accessibility notes:
  * - The viewport is a labelled role="region" landmark so users can find
  *   notifications. Each toast carries its own live semantics: role="status"
- *   (polite) for info/success, role="alert" (assertive) for danger — so the
+ *   (polite) for info/success, role="alert" (assertive) for danger, so the
  *   message is announced when inserted without stealing focus.
  * - aria-atomic groups title + description into a single announcement.
  * - The dismiss control is a real labelled button (WCAG 4.1.2).

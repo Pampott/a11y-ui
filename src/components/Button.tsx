@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/cn';
 
 const buttonVariants = cva(
-  // Base — focus ring is always visible and meets WCAG 2.4.7 (focus visible)
+  // Base: focus ring is always visible and meets WCAG 2.4.7 (focus visible)
   [
     'inline-flex items-center justify-center gap-2 rounded-token font-medium',
     'transition-colors duration-150',

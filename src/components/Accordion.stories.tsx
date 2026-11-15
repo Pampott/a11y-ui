@@ -34,7 +34,7 @@ const faq: { id: string; title: string; content: string }[] = [
     id: 'support',
     title: 'How do I contact support?',
     content:
-      'Email support@example.com or use the live chat in the bottom-right corner — we reply within one business day.',
+      'Email support@example.com or use the live chat in the bottom-right corner. We reply within one business day.',
   },
 ];
 

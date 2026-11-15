@@ -15,11 +15,11 @@ import { Switch } from '../components/Switch';
  * Automated accessibility tests.
  *
  * Each component is rendered and scanned with axe-core. A test FAILS if any
- * WCAG violation is detected — this is the non-regression safety net: if someone
+ * WCAG violation is detected. This is the non-regression safety net: if someone
  * later removes a label or breaks an ARIA attribute, CI catches it.
  */
 
-describe('Accessibility — no axe violations', () => {
+describe('Accessibility: no axe violations', () => {
   it('Button (primary)', async () => {
     const { container } = render(<Button>Save changes</Button>);
     expect(await axe(container)).toHaveNoViolations();
