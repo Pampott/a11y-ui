@@ -28,7 +28,7 @@ export interface BeforeAfterProps {
  * Layout for a remediation example: the faulty version and the corrected one
  * side by side, with what assistive technology announces and the list of fixes.
  *
- * "Before" and "After" are always labelled in text — never by colour alone.
+ * "Before" and "After" are always labelled in text, never by colour alone.
  */
 export function BeforeAfter({
   title,
@@ -53,14 +53,14 @@ export function BeforeAfter({
 
       <div className="grid gap-4 md:grid-cols-2">
         <Panel
-          heading="Before — as found"
+          heading="Before: as found"
           announced={announcedBefore}
           className="border-dashed border-gray-500"
         >
           {before}
         </Panel>
         <Panel
-          heading="After — remediated"
+          heading="After: remediated"
           announced={announcedAfter}
           className="border-solid border-gray-900"
         >

@@ -20,7 +20,7 @@ async function violationIds(container: Element) {
 }
 
 describe('Form field with error', () => {
-  it('before — axe reports nothing, yet the error is not linked to the field', async () => {
+  it('before: axe reports nothing, yet the error is not linked to the field', async () => {
     const user = userEvent.setup();
     const { container } = render(<EmailFieldBefore />);
 
@@ -37,7 +37,7 @@ describe('Form field with error', () => {
     expect(field).not.toHaveFocus();
   });
 
-  it('after — labelled, error announced and linked, focus returned to the field', async () => {
+  it('after: labelled, error announced and linked, focus returned to the field', async () => {
     const user = userEvent.setup();
     const { container } = render(<EmailFieldAfter />);
 
@@ -53,7 +53,7 @@ describe('Form field with error', () => {
     expect(await violationIds(container)).toEqual([]);
   });
 
-  it('after — the error clears once the value is valid', async () => {
+  it('after: the error clears once the value is valid', async () => {
     const user = userEvent.setup();
     render(<EmailFieldAfter />);
 
@@ -67,14 +67,14 @@ describe('Form field with error', () => {
 });
 
 describe('Icon-only button', () => {
-  it('before — the button has no accessible name, and axe catches it', async () => {
+  it('before: the button has no accessible name, and axe catches it', async () => {
     const { container } = render(<RemoveButtonBefore itemName="Linen shirt" />);
 
     expect(screen.getByRole('button')).not.toHaveAccessibleName();
     expect(await violationIds(container)).toEqual(['button-name']);
   });
 
-  it('after — the name states the action and the item', async () => {
+  it('after: the name states the action and the item', async () => {
     const { container } = render(<RemoveButtonAfter itemName="Linen shirt" />);
 
     expect(screen.getByRole('button', { name: 'Remove Linen shirt from cart' })).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe('Icon-only button', () => {
 });
 
 describe('Modal dialog', () => {
-  it('before — axe reports nothing, yet there is no dialog and the keyboard cannot close it', async () => {
+  it('before: axe reports nothing, yet there is no dialog and the keyboard cannot close it', async () => {
     const user = userEvent.setup();
     // The overlay renders inline, so scanning the container covers it.
     const { container } = render(<CartDialogBefore />);
@@ -101,7 +101,7 @@ describe('Modal dialog', () => {
     expect(screen.getByText('Added to your cart')).toBeInTheDocument();
   });
 
-  it('after — named dialog, focus moved in and trapped, Escape closes and restores focus', async () => {
+  it('after: named dialog, focus moved in and trapped, Escape closes and restores focus', async () => {
     const user = userEvent.setup();
     const { baseElement } = render(<CartDialogAfter />);
     const trigger = screen.getByRole('button', { name: 'Add to cart' });

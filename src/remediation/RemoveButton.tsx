@@ -31,7 +31,7 @@ function CartLine({ itemName, children }: { itemName: string; children: React.Re
   return (
     <div className="flex w-full items-center justify-between gap-4 border-b border-gray-300 py-2">
       <span className="text-base">
-        {itemName} <span className="text-gray-700">— €49</span>
+        {itemName}, <span className="text-gray-700">€49</span>
       </span>
       {children}
     </div>
@@ -39,7 +39,7 @@ function CartLine({ itemName, children }: { itemName: string; children: React.Re
 }
 
 /**
- * BEFORE — deliberately inaccessible. Do not copy.
+ * BEFORE: deliberately inaccessible. Do not copy.
  *
  * An icon-only "remove from cart" button with no accessible name: a screen
  * reader announces "button" and nothing else. The target is also 16 px wide.
@@ -55,7 +55,7 @@ export function RemoveButtonBefore({ itemName, onRemove }: RemoveButtonProps) {
 }
 
 /**
- * AFTER — remediated with the library's `Button`.
+ * AFTER: remediated with the library's `Button`.
  *
  * The label names the action and the item, so a list of identical icons stays
  * distinguishable. The icon is decorative and hidden from assistive technology.

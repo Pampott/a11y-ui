@@ -29,7 +29,7 @@ export const FormField: Story = {
       before={<EmailFieldBefore />}
       after={<EmailFieldAfter />}
       announcedBefore={
-        'On submit: nothing. Back on the field: "Email star, edit text" — no mention of the error.'
+        'On submit: nothing. Back on the field: "Email star, edit text", with no mention of the error.'
       }
       announcedAfter={
         'On submit: "Enter an email address in the format name@example.com." Focus returns to the field: "Email address, required, invalid data, edit text", then the hint and the error.'

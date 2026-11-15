@@ -5,7 +5,7 @@ import { Input } from '../components/Input';
 const EMAIL = /^\S+@\S+\.\S+$/;
 
 /**
- * BEFORE — deliberately inaccessible. Do not copy.
+ * BEFORE: deliberately inaccessible. Do not copy.
  *
  * A checkout email field as it is often found in the wild:
  * - the placeholder is the only label, and it vanishes on typing;
@@ -42,7 +42,7 @@ export function EmailFieldBefore() {
 }
 
 /**
- * AFTER — the same field, remediated with the library's `Input`.
+ * AFTER: the same field, remediated with the library's `Input`.
  *
  * - visible label linked to the field, required state exposed;
  * - error linked with aria-describedby, flagged with aria-invalid, announced

@@ -3,7 +3,7 @@ import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
 
 /**
- * BEFORE — deliberately inaccessible. Do not copy.
+ * BEFORE: deliberately inaccessible. Do not copy.
  *
  * An "added to cart" overlay built from plain <div>s:
  * - no dialog role and no accessible name;
@@ -28,7 +28,7 @@ export function CartDialogBefore() {
               ×
             </span>
             <div className="mb-3 text-lg font-semibold text-gray-900">Added to your cart</div>
-            <p className="mb-4 text-base text-gray-700">Linen shirt — €49</p>
+            <p className="mb-4 text-base text-gray-700">Linen shirt, €49</p>
             <a href="#checkout" className="text-brand underline">
               Go to checkout
             </a>
@@ -40,7 +40,7 @@ export function CartDialogBefore() {
 }
 
 /**
- * AFTER — remediated with the library's `Modal`.
+ * AFTER: remediated with the library's `Modal`.
  *
  * role="dialog" with a name, focus moved in and trapped, Escape to close,
  * focus restored to the trigger, real buttons, title exposed as a heading.
@@ -52,7 +52,7 @@ export function CartDialogAfter() {
     <>
       <Button onClick={() => setOpen(true)}>Add to cart</Button>
       <Modal open={open} onClose={() => setOpen(false)} title="Added to your cart">
-        <p className="mb-4 text-base text-gray-700">Linen shirt — €49</p>
+        <p className="mb-4 text-base text-gray-700">Linen shirt, €49</p>
         <div className="flex flex-wrap items-center gap-4">
           <Button variant="secondary" onClick={() => setOpen(false)}>
             Continue shopping

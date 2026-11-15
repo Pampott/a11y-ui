@@ -49,7 +49,7 @@ Building accessible components is half the job; the other half is fixing the one
 | Icon-only button | No accessible name, 16 px target | Yes (`button-name`) |
 | Modal dialog | No dialog role or name, focus left behind, mouse-only close, no Escape | No |
 
-Two of the three pass an automated scan. That is the point: each pair is tested from both sides in `remediation.test.tsx` — the "before" version must exhibit the fault, the "after" version must not — with keyboard and accessible-name assertions where axe is blind.
+Two of the three pass an automated scan. That is the point: each pair is tested from both sides in `remediation.test.tsx`. The "before" version must exhibit the fault and the "after" version must not, with keyboard and accessible-name assertions where axe is blind.
 
 ---
 
