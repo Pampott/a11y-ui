@@ -5,6 +5,8 @@ import { axe } from 'jest-axe';
 import { EmailFieldBefore, EmailFieldAfter } from './EmailField';
 import { RemoveButtonBefore, RemoveButtonAfter } from './RemoveButton';
 import { CartDialogBefore, CartDialogAfter } from './CartDialog';
+import { DeliveryChoiceBefore, DeliveryChoiceAfter } from './DeliveryChoice';
+import { CartQuantityBefore, CartQuantityAfter } from './CartQuantity';
 
 /**
  * Remediation examples.
@@ -125,5 +127,64 @@ describe('Modal dialog', () => {
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(trigger).toHaveFocus();
+  });
+});
+
+describe('Radio group', () => {
+  it('before: unnamed radios and no group', async () => {
+    const { container } = render(<DeliveryChoiceBefore />);
+
+    expect(await violationIds(container)).toEqual(['label']);
+    expect(screen.queryByRole('group')).toBeNull();
+    for (const radio of screen.getAllByRole('radio')) {
+      expect(radio).not.toHaveAccessibleName();
+      expect(radio).not.toHaveAccessibleDescription();
+    }
+  });
+
+  it('after: named group, labelled options with their hint, label is a click target', async () => {
+    const user = userEvent.setup();
+    const { container } = render(<DeliveryChoiceAfter />);
+
+    expect(screen.getByRole('group', { name: 'Delivery method' })).toBeInTheDocument();
+    const standard = screen.getByRole('radio', { name: 'Standard' });
+    expect(standard).toHaveAccessibleDescription('3 to 5 working days, free');
+
+    await user.click(screen.getByText('Express'));
+    expect(screen.getByRole('radio', { name: 'Express' })).toBeChecked();
+    expect(await violationIds(container)).toEqual([]);
+  });
+});
+
+describe('Quantity stepper', () => {
+  it('before: no buttons, an unnamed field, and the keyboard cannot change the value', async () => {
+    const user = userEvent.setup();
+    const { container } = render(<CartQuantityBefore />);
+
+    expect(await violationIds(container)).toEqual(['label']);
+    expect(screen.queryAllByRole('button')).toHaveLength(0);
+    expect(screen.queryByRole('status')).toBeNull();
+
+    await user.tab();
+    expect(screen.getByRole('textbox')).toHaveFocus();
+    await user.tab();
+    expect(document.body).toHaveFocus();
+  });
+
+  it('after: named buttons reachable with the keyboard, value announced', async () => {
+    const user = userEvent.setup();
+    const { container } = render(<CartQuantityAfter />);
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Decrease quantity of Linen shirt' })).toHaveFocus();
+    await user.tab();
+    await user.tab();
+    const increase = screen.getByRole('button', { name: 'Increase quantity of Linen shirt' });
+    expect(increase).toHaveFocus();
+
+    await user.keyboard('{Enter}');
+    expect(screen.getByRole('textbox', { name: 'Quantity of Linen shirt' })).toHaveValue('2');
+    expect(screen.getByRole('status')).toHaveTextContent('Quantity of Linen shirt: 2.');
+    expect(await violationIds(container)).toEqual([]);
   });
 });
