@@ -2,7 +2,7 @@ import { forwardRef, type ElementType, type HTMLAttributes } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/cn';
 
-const headingVariants = cva('font-display font-heading text-ink text-balance', {
+const headingVariants = cva('scroll-mt-24 font-display font-heading text-ink text-balance', {
   variants: {
     size: {
       display: 'text-display',
@@ -58,8 +58,13 @@ const textVariants = cva('', {
     weight: {
       regular: 'font-normal',
       medium: 'font-medium',
+      semibold: 'font-semibold',
       bold: 'font-bold',
       heavy: 'font-heading',
+    },
+    align: {
+      start: '',
+      center: 'text-center',
     },
     measure: {
       none: '',
@@ -68,7 +73,7 @@ const textVariants = cva('', {
       wide: 'max-w-3xl',
     },
   },
-  defaultVariants: { size: 'md', tone: 'default', weight: 'regular', measure: 'none' },
+  defaultVariants: { size: 'md', tone: 'default', weight: 'regular', align: 'start', measure: 'none' },
 });
 
 export interface TextProps
@@ -79,8 +84,8 @@ export interface TextProps
 
 /** Body text. A <p> by default. */
 export const Text = forwardRef<HTMLElement, TextProps>(
-  ({ as: Tag = 'p', size, tone, weight, measure, className, ...props }, ref) => (
-    <Tag ref={ref} className={cn(textVariants({ size, tone, weight, measure }), className)} {...props} />
+  ({ as: Tag = 'p', size, tone, weight, align, measure, className, ...props }, ref) => (
+    <Tag ref={ref} className={cn(textVariants({ size, tone, weight, align, measure }), className)} {...props} />
   )
 );
 Text.displayName = 'Text';
@@ -141,3 +146,13 @@ export const Prose = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   )
 );
 Prose.displayName = 'Prose';
+
+export interface VisuallyHiddenProps extends HTMLAttributes<HTMLElement> {
+  as?: ElementType;
+}
+
+/** Text read by assistive technologies but not shown: a live region, an extra label. */
+export const VisuallyHidden = forwardRef<HTMLElement, VisuallyHiddenProps>(({ as: Tag = 'span', className, ...props }, ref) => (
+  <Tag ref={ref} className={cn('sr-only', className)} {...props} />
+));
+VisuallyHidden.displayName = 'VisuallyHidden';

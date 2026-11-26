@@ -27,6 +27,12 @@ import {
   TextLink,
   ButtonLink,
   WindowFrame,
+  Cluster,
+  FactList,
+  Alternatives,
+  Comparison,
+  IconBadge,
+  VisuallyHidden,
 } from '../index';
 
 /** A page built only from the design system, used by the tests and the Storybook. */
@@ -90,6 +96,26 @@ export function Page() {
               <ProgressRing value={72} label="Score" />
             </WindowFrame>
             <CodeSkeleton />
+            <FactList items={[{ figure: '1 sur 4', text: 'sites contrôlés en défaut', source: 'Source fictive' }]} />
+            <Alternatives separator="ou" items={[{ figure: '10', text: 'salariés' }, { figure: '2 M€', text: 'de chiffre d’affaires' }]} />
+            <Comparison
+              before={<Heading level={3} size="md">Avant</Heading>}
+              after={
+                <Cluster>
+                  <Heading level={3} size="md">Après</Heading>
+                  <IconBadge>✓</IconBadge>
+                </Cluster>
+              }
+            />
+            <ProgressRing
+              label="Structure"
+              display="3/5"
+              segments={[
+                { value: 3, tone: 'success' },
+                { value: 2, tone: 'danger' },
+              ]}
+            />
+            <VisuallyHidden as="p" aria-live="polite">Scan terminé</VisuallyHidden>
             <ProgressList
               doneLabel="terminé"
               items={[

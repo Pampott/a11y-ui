@@ -30,3 +30,6 @@ jobs:
 
       - name: Accessibility & interaction tests
         run: npm run test
+
+      - name: Build the library
+        run: npm run build

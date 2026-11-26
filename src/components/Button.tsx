@@ -10,6 +10,8 @@ const buttonVariants = cva(
     'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-brand',
     // Disabled state is communicated via aria-disabled, not just visual dimming
     'disabled:cursor-not-allowed disabled:opacity-50',
+    // A button kept focusable while busy (aria-disabled) looks busy too.
+    'aria-disabled:cursor-progress aria-disabled:opacity-80',
   ],
   {
     variants: {
@@ -32,6 +34,11 @@ const buttonVariants = cva(
         // 48px: the comfortable target size for a page's main call to action.
         lg: 'min-h-12 px-6 text-lg',
       },
+      // Round icon button: pair it with `iconOnlyLabel`.
+      shape: {
+        default: '',
+        round: 'aspect-square rounded-full px-0',
+      },
       fullWidth: {
         true: 'w-full',
         false: '',
@@ -40,6 +47,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: 'primary',
       size: 'md',
+      shape: 'default',
       fullWidth: false,
     },
   }
@@ -64,13 +72,13 @@ export interface ButtonProps
  * - Icon-only buttons require `iconOnlyLabel` so they are never announced as just "button".
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, fullWidth, iconOnlyLabel, children, type = 'button', ...props }, ref) => {
+  ({ className, variant, size, shape, fullWidth, iconOnlyLabel, children, type = 'button', ...props }, ref) => {
     return (
       <button
         ref={ref}
         type={type}
         aria-label={iconOnlyLabel}
-        className={cn(buttonVariants({ variant, size, fullWidth }), className)}
+        className={cn(buttonVariants({ variant, size, shape, fullWidth }), className)}
         {...props}
       >
         {children}

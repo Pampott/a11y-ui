@@ -54,12 +54,12 @@ Enough to build a whole marketing or product page without writing CSS. See *Patt
 | Group | Components | Key accessibility features |
 |-------|------------|----------------------------|
 | Layout | `Container`, `Section`, `Stack`, `Cluster`, `Grid`, `Split` | Collapse to one column on small screens (1.4.10); `Section` renders a `<section>` to name with `aria-labelledby` |
-| Typography | `Heading`, `Text`, `Eyebrow`, `Highlight`, `Prose` | `Heading` takes a required `level` separate from its `size`, so the look never decides the outline (1.3.1) |
+| Typography | `Heading`, `Text`, `Eyebrow`, `Highlight`, `Prose`, `VisuallyHidden` | `Heading` takes a required `level` separate from its `size`, so the look never decides the outline (1.3.1) |
 | Links | `ButtonLink`, `TextLink` | Stay real links; text links always underlined (1.4.1); decorative arrow hidden |
 | Surfaces | `Card`, `Callout` | Polymorphic `as`; callout nature written in its title, not shown by colour alone |
-| Lists and data | `List`, `StatList`, `DefinitionList`, `StepList`, `DataTable`, `CodeBlock`, `Disclosure`, `Price`, `ProgressRing` | `<dl>` and `<ol>` semantics; table with caption and row headers in a focusable scroll region (2.1.1); score ring with a text alternative |
+| Lists and data | `List`, `StatList`, `DefinitionList`, `StepList`, `FactList`, `Alternatives`, `DataTable`, `CodeBlock`, `Disclosure`, `Price`, `ProgressRing` | `<dl>` and `<ol>` semantics; table with caption and row headers in a focusable scroll region (2.1.1); score ring with a text alternative |
 | Progress | `Spinner`, `ProgressList`, `CheckFeed`, `CodeSkeleton` | `aria-current="step"`, finished state in hidden text, status written out next to each icon |
-| Site chrome | `SiteHeader`, `SiteFooter`, `Showcase`, `WindowFrame` | Named `<nav>`, `aria-current="page"`; showcase notes are a list in reading order whatever their placement |
+| Site chrome | `SiteHeader`, `SiteFooter`, `Showcase`, `WindowFrame`, `Wordmark`, `Illustration`, `SideNav`, `Comparison`, `IconBadge` | Named `<nav>`, `aria-current="page"`; showcase notes are a list in reading order whatever their placement |
 
 ---
 

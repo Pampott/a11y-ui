@@ -67,21 +67,21 @@ export { Container, Section, Stack, Cluster, Grid, Split } from './layout/Layout
 export type { ContainerProps, SectionProps, StackProps, ClusterProps, GridProps, SplitProps } from './layout/Layout';
 
 // Typography
-export { Heading, Text, Eyebrow, Highlight, Prose } from './typography/Typography';
-export type { HeadingProps, TextProps, EyebrowProps } from './typography/Typography';
+export { Heading, Text, Eyebrow, Highlight, Prose, VisuallyHidden } from './typography/Typography';
+export type { HeadingProps, TextProps, EyebrowProps, VisuallyHiddenProps } from './typography/Typography';
 
 // Content
 export { ButtonLink, TextLink } from './content/Links';
 export type { ButtonLinkProps, TextLinkProps } from './content/Links';
 export { Card, Callout } from './content/Surfaces';
 export type { CardProps, CalloutProps } from './content/Surfaces';
-export { List, StatList, DefinitionList, StepList } from './content/Lists';
-export type { ListProps, StatListProps, DefinitionListProps, DescriptionItem, StepListProps, StepListItem } from './content/Lists';
+export { List, StatList, DefinitionList, StepList, FactList, Alternatives } from './content/Lists';
+export type { ListProps, StatListProps, DefinitionListProps, DescriptionItem, StepListProps, StepListItem, Fact, FactListProps, AlternativesProps } from './content/Lists';
 export { DataTable, CodeBlock, Disclosure, Price, ProgressRing } from './content/Data';
-export type { DataTableProps, DataTableColumn, CodeBlockProps, DisclosureProps, PriceProps, ProgressRingProps } from './content/Data';
+export type { DataTableProps, DataTableColumn, CodeBlockProps, DisclosureProps, PriceProps, ProgressRingProps, RingSegment } from './content/Data';
 
 // Patterns
 export { Spinner, ProgressList, CheckFeed, CodeSkeleton } from './patterns/Status';
 export type { SpinnerProps, ProgressListProps, ProgressItem, ProgressState, CheckFeedProps, CheckItem, CheckStatus, CodeSkeletonProps } from './patterns/Status';
-export { SiteHeader, SiteFooter, Showcase, WindowFrame, Wordmark, Illustration, SideNav } from './patterns/Chrome';
-export type { SiteHeaderProps, SiteFooterProps, NavLink, FooterGroup, ShowcaseProps, ShowcaseNote, WindowFrameProps, WordmarkProps, IllustrationProps, SideNavProps, SideNavItem } from './patterns/Chrome';
+export { SiteHeader, SiteFooter, Showcase, WindowFrame, Wordmark, Illustration, SideNav, Comparison, IconBadge } from './patterns/Chrome';
+export type { SiteHeaderProps, SiteFooterProps, NavLink, FooterGroup, ShowcaseProps, ShowcaseNote, WindowFrameProps, WordmarkProps, IllustrationProps, SideNavProps, SideNavItem, ComparisonProps, IconBadgeProps } from './patterns/Chrome';
