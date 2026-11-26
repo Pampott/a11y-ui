@@ -20,7 +20,7 @@ export interface QuantityStepperProps {
 }
 
 const buttonClass = cn(
-  'inline-flex h-10 w-10 items-center justify-center border border-gray-400 text-xl text-gray-900',
+  'inline-flex h-10 w-10 items-center justify-center border border-line-strong text-xl text-ink',
   'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-offset-1',
   'aria-disabled:cursor-not-allowed aria-disabled:opacity-50'
 );
@@ -80,7 +80,7 @@ export function QuantityStepper({
 
   return (
     <div className={cn('flex flex-col gap-1.5', className)}>
-      <label htmlFor={inputId} className="text-sm font-medium text-gray-900">
+      <label htmlFor={inputId} className="text-sm font-medium text-ink">
         {label}
         {itemName && <span className="sr-only">{suffix}</span>}
       </label>
@@ -107,7 +107,7 @@ export function QuantityStepper({
           onKeyDown={(event) => {
             if (event.key === 'Enter') commitDraft();
           }}
-          className="h-10 w-14 border-y border-gray-400 text-center text-base focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand"
+          className="h-10 w-14 border-y border-line-strong text-center text-base focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand"
         />
         <button
           type="button"

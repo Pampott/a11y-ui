@@ -46,7 +46,7 @@ export function Fieldset({
 
   return (
     <fieldset aria-describedby={describedBy} className={cn('m-0 min-w-0 border-0 p-0', className)}>
-      <legend className="mb-1.5 p-0 text-sm font-medium text-gray-900">
+      <legend className="mb-1.5 p-0 text-sm font-medium text-ink">
         {legend}
         {required && (
           <>
@@ -60,7 +60,7 @@ export function Fieldset({
 
       <div className="flex flex-col gap-2">
         {hint && (
-          <p id={hintId} className="text-sm text-gray-600">
+          <p id={hintId} className="text-sm text-muted">
             {hint}
           </p>
         )}

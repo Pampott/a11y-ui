@@ -95,7 +95,7 @@ export function Tabs({ tabs, defaultSelected, label, className }: TabsProps) {
 
   return (
     <div className={cn('flex flex-col gap-4', className)}>
-      <div role="tablist" aria-label={label} className="relative flex border-b border-gray-200">
+      <div role="tablist" aria-label={label} className="relative flex border-b border-line">
         {tabs.map((tab, index) => {
           const isSelected = tab.id === selected;
           return (
@@ -115,7 +115,7 @@ export function Tabs({ tabs, defaultSelected, label, className }: TabsProps) {
               className={cn(
                 'px-4 py-2.5 text-base font-medium',
                 'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-inset',
-                isSelected ? 'text-brand' : 'text-gray-600 hover:text-gray-900'
+                isSelected ? 'text-brand' : 'text-muted hover:text-ink'
               )}
             >
               {tab.label}
@@ -138,7 +138,7 @@ export function Tabs({ tabs, defaultSelected, label, className }: TabsProps) {
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${selected}`}
         tabIndex={0}
-        className="text-gray-700 focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand"
+        className="text-muted focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand"
       >
         <div key={selected} className="animate-fade-in">
           {tabs[selectedIndex]?.content}

@@ -93,12 +93,12 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
         aria-labelledby={titleId}
         tabIndex={-1}
         className={cn(
-          'relative z-10 w-full max-w-md rounded-token bg-white p-6 shadow-xl',
+          'relative z-10 w-full max-w-md rounded-token bg-surface p-6 shadow-xl',
           'focus-visible:outline-none',
           className
         )}
       >
-        <h2 id={titleId} className="mb-3 text-lg font-semibold text-gray-900">
+        <h2 id={titleId} className="mb-3 text-lg font-semibold text-ink">
           {title}
         </h2>
         {children}

@@ -1,6 +1,6 @@
 {
   "name": "a11y-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An accessible React component library built with TypeScript, Tailwind CSS and tested against WCAG 2.2 with axe-core.",
   "type": "module",
   "license": "MIT",
@@ -8,7 +8,9 @@
   "files": [
     "dist",
     "tailwind-preset.js",
-    "tailwind-preset.d.ts"
+    "tailwind-preset.d.ts",
+    "themes.js",
+    "themes.d.ts"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -21,6 +23,10 @@
     "./tailwind-preset": {
       "types": "./tailwind-preset.d.ts",
       "default": "./tailwind-preset.js"
+    },
+    "./themes": {
+      "types": "./themes.d.ts",
+      "default": "./themes.js"
     },
     "./package.json": "./package.json"
   },

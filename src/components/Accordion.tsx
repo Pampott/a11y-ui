@@ -93,7 +93,7 @@ export function Accordion({
   );
 
   return (
-    <div className={cn('divide-y divide-gray-200 rounded-token border border-gray-200', className)}>
+    <div className={cn('divide-y divide-line rounded-token border border-line', className)}>
       {items.map((item, index) => {
         const isOpen = open.includes(item.id);
         const triggerId = `${baseId}-trigger-${item.id}`;
@@ -114,7 +114,7 @@ export function Accordion({
                 onKeyDown={(e) => onTriggerKeyDown(e, index)}
                 className={cn(
                   'flex w-full items-center justify-between gap-3 px-4 py-3 text-left',
-                  'text-base font-medium text-gray-900',
+                  'text-base font-medium text-ink',
                   'hover:bg-brand-subtle/60',
                   'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-inset'
                 )}
@@ -124,7 +124,7 @@ export function Accordion({
                   aria-hidden="true"
                   viewBox="0 0 20 20"
                   className={cn(
-                    'h-5 w-5 shrink-0 text-gray-500 transition-transform duration-base ease-standard',
+                    'h-5 w-5 shrink-0 text-line-strong transition-transform duration-base ease-standard',
                     isOpen && 'rotate-180'
                   )}
                   fill="none"
@@ -155,7 +155,7 @@ export function Accordion({
                   {...(isOpen
                     ? undefined
                     : ({ inert: '' } as unknown as React.HTMLAttributes<HTMLDivElement>))}
-                  className="px-4 pb-4 pt-1 text-gray-700"
+                  className="px-4 pb-4 pt-1 text-muted"
                 >
                   {item.content}
                 </div>

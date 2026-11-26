@@ -54,7 +54,7 @@ export function Tooltip({ content, children, className }: TooltipProps) {
           role="tooltip"
           className={cn(
             'absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap',
-            'rounded-md bg-gray-900 px-2.5 py-1.5 text-sm text-white shadow-md',
+            'rounded-md bg-ink px-2.5 py-1.5 text-sm text-canvas shadow-md',
             className
           )}
         >

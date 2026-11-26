@@ -93,11 +93,11 @@ export function RadioGroup({
               className="mt-0.5 h-5 w-5 shrink-0 accent-brand focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-offset-2"
             />
             <div className="flex flex-col">
-              <label htmlFor={optionId} className="text-base text-gray-900">
+              <label htmlFor={optionId} className="text-base text-ink">
                 {option.label}
               </label>
               {option.hint && (
-                <span id={optionHintId} className="text-sm text-gray-600">
+                <span id={optionHintId} className="text-sm text-muted">
                   {option.hint}
                 </span>
               )}

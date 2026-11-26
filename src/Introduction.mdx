@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/blocks';
+import { Button, ButtonLink, Badge, Callout, StatList, Heading, Text, Cluster, Stack } from './index';
+
+<Meta title="Introduction" />
+
+# a11y-ui
+
+An accessible React component library built to **WCAG 2.2**, in TypeScript and Tailwind, where accessibility is part of each component's contract and is **checked by tests on every pull request**.
+
+<div className="not-prose my-8">
+  <StatList
+    columns={3}
+    items={[
+      { term: 'interactive components, hand-built on the WAI-ARIA patterns', description: '21' },
+      { term: 'page building blocks to compose a full site with no CSS', description: '35' },
+      { term: 'themes, every colour pair contrast-tested', description: '2' },
+    ]}
+  />
+</div>
+
+## What makes it different
+
+- **Accessibility is tested, not claimed.** Each component has axe-core scans and keyboard and screen-reader-semantics tests (Testing Library). A regression fails the pull request.
+- **Before and after remediation.** The *Remediation* section shows five defects common on e-commerce sites, their fix in code, the WCAG criteria involved, and what an automated scan does and does not catch.
+- **Themes without CSS.** Every token is a CSS variable. Switch the theme in the toolbar above (the paintbrush): the default terracotta theme, and the *clairoki* theme made for the Clairoki site.
+- **Honest limits.** Screen-reader announcements follow the ARIA specification; they have not yet been verified by hand with VoiceOver or NVDA.
+
+## Try it
+
+<div className="not-prose my-6">
+  <Stack gap="md">
+    <Cluster gap="sm">
+      <Button>Primary action</Button>
+      <Button variant="outline">Secondary</Button>
+      <Badge tone="success">Contrast checked</Badge>
+    </Cluster>
+    <Callout title="Keyboard first">Press Tab: every control shows a 3px focus ring that meets WCAG 2.4.7.</Callout>
+  </Stack>
+</div>
+
+## Where to start
+
+- [Example page](?path=/story/patterns-example-page--default): a whole page composed only of library components.
+- [Before and after](?path=/docs/remediation-before-and-after--docs): five common defects and their fixes.
+- [Combobox](?path=/docs/components-combobox--docs), [Tabs](?path=/docs/components-tabs--docs), [Modal](?path=/docs/components-modal--docs): the WAI-ARIA patterns, implemented by hand.
+- [Source code on GitHub](https://github.com/Pampott/a11y-ui), MIT licence.

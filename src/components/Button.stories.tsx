@@ -21,6 +21,8 @@ export const Primary: Story = { args: { children: 'Save changes', variant: 'prim
 export const Secondary: Story = { args: { children: 'Cancel', variant: 'secondary' } };
 export const Ghost: Story = { args: { children: 'Learn more', variant: 'ghost' } };
 export const Danger: Story = { args: { children: 'Delete', variant: 'danger' } };
+export const Brand: Story = { args: { children: 'Start the scan', variant: 'brand' } };
+export const Outline: Story = { args: { children: 'See an example', variant: 'outline' } };
 export const Disabled: Story = { args: { children: 'Unavailable', disabled: true } };
 
 export const IconOnly: Story = {
