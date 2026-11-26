@@ -34,7 +34,7 @@ export const Container = forwardRef<HTMLElement, ContainerProps>(
 );
 Container.displayName = 'Container';
 
-const sectionVariants = cva('', {
+const sectionVariants = cva('scroll-mt-20', {
   variants: {
     space: {
       none: '',

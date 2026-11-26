@@ -9,6 +9,8 @@ export interface SwitchProps {
   /** Initial state when uncontrolled. */
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
+  /** Help text shown next to the switch and linked to it with aria-describedby. */
+  description?: string;
   disabled?: boolean;
   className?: string;
 }
@@ -31,10 +33,12 @@ export function Switch({
   checked,
   defaultChecked = false,
   onChange,
+  description,
   disabled = false,
   className,
 }: SwitchProps) {
   const labelId = useId();
+  const descriptionId = useId();
   const [internal, setInternal] = useState(defaultChecked);
   const isControlled = checked !== undefined;
   const isOn = isControlled ? checked : internal;
@@ -46,12 +50,13 @@ export function Switch({
     onChange?.(next);
   }, [disabled, isOn, isControlled, onChange]);
 
-  return (
+  const control = (
     <button
       type="button"
       role="switch"
       aria-checked={isOn}
       aria-labelledby={labelId}
+      aria-describedby={description ? descriptionId : undefined}
       disabled={disabled}
       onClick={toggle}
       className={cn(
@@ -81,5 +86,15 @@ export function Switch({
         {label}
       </span>
     </button>
+  );
+
+  if (!description) return control;
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      {control}
+      <p id={descriptionId} className="max-w-xl text-muted">
+        {description}
+      </p>
+    </div>
   );
 }

@@ -2,6 +2,8 @@ import { forwardRef, useId } from 'react';
 import { cn } from '../lib/cn';
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** Monospaced text, for pasted code. */
+  code?: boolean;
   /** Visible label: required for accessibility. Never use placeholder as a label. */
   label: string;
   /** Optional helper text shown below the label. */
@@ -23,7 +25,7 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
  *   limit in the hint so it is not discovered by surprise (3.3.2).
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, hint, error, id, required, rows = 5, className, ...props }, ref) => {
+  ({ label, hint, error, id, required, rows = 5, code = false, className, ...props }, ref) => {
     const generatedId = useId();
     const textareaId = id ?? generatedId;
     const hintId = `${textareaId}-hint`;
@@ -60,6 +62,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             'resize-y rounded-token border bg-surface px-3 py-2 text-base',
             'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-offset-1 focus-visible:ring-brand',
             error ? 'border-danger' : 'border-line-strong',
+            code && 'font-mono text-sm',
             className
           )}
           {...props}

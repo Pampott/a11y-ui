@@ -96,23 +96,30 @@ export interface CodeBlockProps extends HTMLAttributes<HTMLElement> {
   code: string;
   /** Names the block for screen readers ("Code avant correction"). */
   label: string;
-  tone?: 'neutral' | 'danger' | 'success';
+  tone?: 'neutral' | 'danger' | 'success' | 'inverse';
+  /**
+   * Wrap long lines instead of scrolling sideways. The block is then not
+   * focusable, since there is nothing to scroll (WCAG 1.4.10).
+   */
+  wrap?: boolean;
 }
 
 /** Preformatted code in a focusable region that scrolls sideways when needed. */
 export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
-  ({ code, label, tone = 'neutral', className, ...props }, ref) => (
+  ({ code, label, tone = 'neutral', wrap = false, className, ...props }, ref) => (
     <figure ref={ref} className={cn('min-w-0', className)} {...props}>
       <figcaption className="mb-2 text-sm font-bold text-ink">{label}</figcaption>
       <pre
-        tabIndex={0}
+        tabIndex={wrap ? undefined : 0}
         className={cn(
-          'overflow-x-auto rounded-token border-2 p-4 font-mono text-sm leading-relaxed',
+          'rounded-token border-2 p-4 font-mono text-sm leading-relaxed',
+          wrap ? 'whitespace-pre-wrap [overflow-wrap:anywhere]' : 'overflow-x-auto',
           'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand',
           {
             neutral: 'border-line bg-surface-sunken text-ink',
             danger: 'border-danger/40 bg-danger-subtle text-ink',
             success: 'border-success/40 bg-success-subtle text-ink',
+            inverse: 'border-ink bg-ink text-canvas',
           }[tone]
         )}
       >
@@ -189,9 +196,18 @@ export const Price = forwardRef<HTMLParagraphElement, PriceProps>(
 );
 Price.displayName = 'Price';
 
-export interface ProgressRingProps extends HTMLAttributes<HTMLDivElement> {
-  /** 0 to 100. */
+export interface RingSegment {
   value: number;
+  tone: 'brand' | 'success' | 'warning' | 'danger';
+}
+
+export interface ProgressRingProps extends HTMLAttributes<HTMLDivElement> {
+  /** 0 to 100. Ignored when `segments` is given. */
+  value?: number;
+  /** Several arcs end to end, each a share of `max` (passed and failed checks, for example). */
+  segments?: RingSegment[];
+  /** Total that `segments` are measured against. Defaults to their sum. */
+  max?: number;
   /** Text shown in the centre (defaults to the value). */
   display?: ReactNode;
   /** What the value measures, read by screen readers with the value. */
@@ -205,10 +221,13 @@ export interface ProgressRingProps extends HTMLAttributes<HTMLDivElement> {
  * written out for screen readers, as an image with a text alternative.
  */
 export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
-  ({ value, display, label, tone = 'brand', size = 'md', className, ...props }, ref) => {
+  ({ value = 0, segments, max, display, label, tone = 'brand', size = 'md', className, ...props }, ref) => {
     const clamped = Math.max(0, Math.min(100, value));
     const radius = 42;
     const circumference = 2 * Math.PI * radius;
+    const arcs = segments ?? [{ value: clamped, tone }];
+    const total = segments ? (max ?? segments.reduce((sum, s) => sum + s.value, 0)) : 100;
+    let offset = 0;
     return (
       <div
         ref={ref}
@@ -219,20 +238,29 @@ export const ProgressRing = forwardRef<HTMLDivElement, ProgressRingProps>(
       >
         <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90" aria-hidden="true">
           <circle cx="50" cy="50" r={radius} fill="none" strokeWidth="9" className="stroke-brand-soft" />
-          <circle
-            cx="50"
-            cy="50"
-            r={radius}
-            fill="none"
-            strokeWidth="9"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={circumference * (1 - clamped / 100)}
-            className={cn(
-              'transition-[stroke-dashoffset] duration-slow ease-emphasized',
-              { brand: 'stroke-brand', success: 'stroke-success', warning: 'stroke-warning', danger: 'stroke-danger' }[tone]
-            )}
-          />
+          {total > 0 &&
+            arcs.map((arc, i) => {
+              const length = (arc.value / total) * circumference;
+              const start = offset;
+              offset += length;
+              return arc.value > 0 ? (
+                <circle
+                  key={i}
+                  cx="50"
+                  cy="50"
+                  r={radius}
+                  fill="none"
+                  strokeWidth="9"
+                  strokeLinecap={segments ? 'butt' : 'round'}
+                  strokeDasharray={`${length} ${circumference}`}
+                  strokeDashoffset={-start}
+                  className={cn(
+                    'transition-[stroke-dasharray] duration-slow ease-emphasized',
+                    { brand: 'stroke-brand', success: 'stroke-success', warning: 'stroke-warning', danger: 'stroke-danger' }[arc.tone]
+                  )}
+                />
+              ) : null;
+            })}
         </svg>
         <span
           aria-hidden="true"

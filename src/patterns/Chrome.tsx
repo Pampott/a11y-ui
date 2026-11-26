@@ -272,3 +272,54 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(({ items, navLabel,
   );
 });
 SideNav.displayName = 'SideNav';
+
+export interface ComparisonProps extends HTMLAttributes<HTMLDivElement> {
+  before: ReactNode;
+  after: ReactNode;
+}
+
+/**
+ * Two panels side by side (one under the other on small screens), joined by a
+ * dashed seam. The panels name themselves ("Avant", "Après") in their
+ * headings: the order and the seam are not the only cue.
+ */
+export const Comparison = forwardRef<HTMLDivElement, ComparisonProps>(({ before, after, className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('grid overflow-hidden rounded-card border-2 border-line bg-surface md:grid-cols-[1fr_3rem_1fr]', className)}
+    {...props}
+  >
+    <div className="p-6 sm:p-10">{before}</div>
+    <div aria-hidden="true" className="relative h-8 bg-brand-subtle md:h-auto">
+      <div className="absolute inset-x-0 top-1/2 border-t-2 border-dashed border-seam md:inset-x-auto md:inset-y-0 md:left-1/2 md:top-0 md:border-l-2 md:border-t-0" />
+    </div>
+    <div className="p-6 sm:p-10">{after}</div>
+  </div>
+));
+Comparison.displayName = 'Comparison';
+
+export interface IconBadgeProps extends HTMLAttributes<HTMLSpanElement> {
+  tone?: 'brand' | 'subtle' | 'success' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+/** A decorative round holder for an icon. Hidden from assistive technologies. */
+export const IconBadge = forwardRef<HTMLSpanElement, IconBadgeProps>(({ tone = 'brand', size = 'lg', className, ...props }, ref) => (
+  <span
+    ref={ref}
+    aria-hidden="true"
+    className={cn(
+      'inline-flex shrink-0 items-center justify-center rounded-full',
+      { sm: 'h-7 w-7', md: 'h-10 w-10', lg: 'h-12 w-12' }[size],
+      {
+        brand: 'bg-brand text-on-brand',
+        subtle: 'bg-brand-subtle text-brand',
+        success: 'bg-success text-on-brand',
+        danger: 'bg-danger text-on-brand',
+      }[tone],
+      className
+    )}
+    {...props}
+  />
+));
+IconBadge.displayName = 'IconBadge';
