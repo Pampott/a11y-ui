@@ -7,7 +7,7 @@ const badgeVariants = cva(
     variants: {
       // Every variant pairs text + background to meet WCAG 1.4.3 contrast (>= 4.5:1)
       tone: {
-        neutral: 'bg-gray-200 text-gray-900',
+        neutral: 'bg-gray-200 text-ink',
         brand: 'bg-brand-subtle text-brand',
         success: 'bg-success-subtle text-success',
         danger: 'bg-danger-subtle text-danger',

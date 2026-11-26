@@ -15,7 +15,8 @@ Accessibility is usually treated as an afterthought, a checklist run once before
 - **Hand-built** following the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/): the patterns are implemented, not hidden behind a black box (see [Build philosophy](#build-philosophy) for the one deliberate exception).
 - **Keyboard-first**: every interactive component works without a mouse.
 - **Motion that respects the user**: animations are token-driven and globally disabled under `prefers-reduced-motion` (WCAG 2.3.3).
-- **Screen-reader tested**: VoiceOver and NVDA, plus automated axe-core scans.
+- **Tested on every commit**: axe-core scans and interaction tests with Testing Library. Screen-reader announcements are designed from the ARIA specification and have not yet been verified by hand with VoiceOver or NVDA.
+- **Themeable without CSS**: every token is a CSS variable, and every theme's colour pairs are contrast-checked in the test suite.
 - **TypeScript** throughout, with full prop typing.
 
 ---
@@ -26,6 +27,7 @@ Accessibility is usually treated as an afterthought, a checklist run once before
 |-----------|---------|----------------------------|
 | `Button` | Native button | Visible focus ring (2.4.7), required `iconOnlyLabel` for icon buttons |
 | `Input` | Labelled field | Linked label, `aria-describedby` hints, `aria-invalid` + `role="alert"` errors |
+| `Textarea` | Labelled multi-line field | Same contract as `Input`, vertical resize only (1.4.10) |
 | `Modal` | WAI-ARIA Dialog | Focus trap, Escape to close, focus restoration, `aria-modal` |
 | `Tooltip` | WAI-ARIA Tooltip | Shows on hover **and** focus (1.4.13), Escape to dismiss |
 | `Badge` | Status indicator | Contrast-checked tones (1.4.3), colour never the only signal |
@@ -44,6 +46,20 @@ Accessibility is usually treated as an afterthought, a checklist run once before
 | `QuantityStepper` | Stepper | Buttons named after the action and the item, live announcement (4.1.3), focus kept at a bound |
 | `Steps` | Progress indicator | `<nav>` + ordered list, `aria-current="step"`, state never by colour alone (1.4.1) |
 | `Carousel` | WAI-ARIA Carousel | Named controls first, slide position announced, rotation can be paused and respects reduced motion (2.2.2) |
+
+### Page building blocks
+
+Enough to build a whole marketing or product page without writing CSS. See *Patterns/Example page* in the Storybook.
+
+| Group | Components | Key accessibility features |
+|-------|------------|----------------------------|
+| Layout | `Container`, `Section`, `Stack`, `Cluster`, `Grid`, `Split` | Collapse to one column on small screens (1.4.10); `Section` renders a `<section>` to name with `aria-labelledby` |
+| Typography | `Heading`, `Text`, `Eyebrow`, `Highlight`, `Prose` | `Heading` takes a required `level` separate from its `size`, so the look never decides the outline (1.3.1) |
+| Links | `ButtonLink`, `TextLink` | Stay real links; text links always underlined (1.4.1); decorative arrow hidden |
+| Surfaces | `Card`, `Callout` | Polymorphic `as`; callout nature written in its title, not shown by colour alone |
+| Lists and data | `List`, `StatList`, `DefinitionList`, `StepList`, `DataTable`, `CodeBlock`, `Disclosure`, `Price`, `ProgressRing` | `<dl>` and `<ol>` semantics; table with caption and row headers in a focusable scroll region (2.1.1); score ring with a text alternative |
+| Progress | `Spinner`, `ProgressList`, `CheckFeed`, `CodeSkeleton` | `aria-current="step"`, finished state in hidden text, status written out next to each icon |
+| Site chrome | `SiteHeader`, `SiteFooter`, `Showcase`, `WindowFrame` | Named `<nav>`, `aria-current="page"`; showcase notes are a list in reading order whatever their placement |
 
 ---
 
@@ -90,7 +106,7 @@ npm run build         # build the library into dist/
 The library is not published on npm yet. Install it from GitHub, pinned to a tag so an application never picks up an unreleased change:
 
 ```bash
-npm install github:Pampott/a11y-ui#v0.2.0
+npm install github:Pampott/a11y-ui#v0.3.0
 ```
 
 npm builds the library on install (the `prepare` script), so there is no build output committed to the repository.
@@ -102,8 +118,8 @@ The components ship as JavaScript that carries Tailwind class names, with no sty
 import a11yUi from 'a11y-ui/tailwind-preset';
 
 export default {
-  // 1. The design tokens (brand colours, radius, focus ring, motion) and the
-  //    global prefers-reduced-motion guard.
+  // 1. The design tokens (colours, type, radius, shadows, focus ring, motion),
+  //    the themes and the global prefers-reduced-motion guard.
   presets: [a11yUi],
   content: [
     './index.html',
@@ -117,6 +133,16 @@ export default {
 ```tsx
 import { Button, Input } from 'a11y-ui';
 ```
+
+### Themes
+
+Every token is a CSS variable. The preset writes the default theme on `:root` and the others on `[data-theme='<name>']`, and sets the page background, text colour and font from the theme. An application picks a theme with one attribute and redefines nothing:
+
+```html
+<html lang="fr" data-theme="clairoki">
+```
+
+Themes live in `themes.js` (exported as `a11y-ui/themes`). Adding one means adding an entry there; the test suite then checks all its text pairs against 4.5:1 and its control borders against 3:1 (WCAG 1.4.3, 1.4.11). Fonts are not bundled: a theme names a font family, and the application loads it.
 
 Without the preset the components render unstyled, and without the `content` entry Tailwind purges their classes. React 18 or later and Tailwind CSS 3.4 are peer dependencies.
 
@@ -146,7 +172,7 @@ npm run test
 ✓ Remediation: each "before" exhibits its fault, each "after" does not
 ```
 
-> 73 tests across 9 files: every interactive component is covered for both
+> 77 tests across 10 files: every interactive component is covered for both
 > axe violations **and** keyboard behaviour.
 
 The Storybook `@storybook/addon-a11y` panel also runs axe live on every story, so you can see the accessibility tree and any violations while developing.

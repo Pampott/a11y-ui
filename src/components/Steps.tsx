@@ -13,6 +13,8 @@ export interface StepsProps {
   steps: StepItem[];
   /** Id of the step the user is on. */
   current: string;
+  /** Hidden prefix of a completed step, for screen readers. Defaults to "Completed". */
+  completedLabel?: string;
   className?: string;
 }
 
@@ -29,7 +31,7 @@ export interface StepsProps {
  * - Only completed steps are links. Upcoming steps are plain text, so nothing
  *   focusable leads nowhere (2.4.3).
  */
-export function Steps({ label, steps, current, className }: StepsProps) {
+export function Steps({ label, steps, current, completedLabel = 'Completed', className }: StepsProps) {
   const currentIndex = steps.findIndex((step) => step.id === current);
 
   return (
@@ -44,9 +46,9 @@ export function Steps({ label, steps, current, className }: StepsProps) {
               aria-hidden="true"
               className={cn(
                 'inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 text-sm font-semibold',
-                isCompleted && 'border-success bg-success text-white',
+                isCompleted && 'border-success bg-success text-on-brand',
                 isCurrent && 'border-brand text-brand',
-                !isCompleted && !isCurrent && 'border-gray-500 text-gray-700'
+                !isCompleted && !isCurrent && 'border-line-strong text-muted'
               )}
             >
               {isCompleted ? '✓' : index + 1}
@@ -59,20 +61,20 @@ export function Steps({ label, steps, current, className }: StepsProps) {
               {isCompleted && step.href ? (
                 <a
                   href={step.href}
-                  className="rounded text-gray-900 underline focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-offset-2"
+                  className="rounded text-ink underline focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand focus-visible:ring-offset-2"
                 >
-                  <span className="sr-only">Completed: </span>
+                  <span className="sr-only">{completedLabel}: </span>
                   {step.label}
                 </a>
               ) : (
                 <span
                   aria-current={isCurrent ? 'step' : undefined}
                   className={cn(
-                    isCurrent && 'border-b-2 border-brand font-semibold text-gray-900',
-                    !isCurrent && 'text-gray-700'
+                    isCurrent && 'border-b-2 border-brand font-semibold text-ink',
+                    !isCurrent && 'text-muted'
                   )}
                 >
-                  {isCompleted && <span className="sr-only">Completed: </span>}
+                  {isCompleted && <span className="sr-only">{completedLabel}: </span>}
                   {step.label}
                 </span>
               )}

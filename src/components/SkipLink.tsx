@@ -26,7 +26,7 @@ export function SkipLink({ targetId, children = 'Skip to main content', classNam
         'sr-only',
         // …but fully visible and focusable when tabbed to
         'focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]',
-        'focus:rounded-token focus:bg-brand focus:px-4 focus:py-2 focus:text-white',
+        'focus:rounded-token focus:bg-brand focus:px-4 focus:py-2 focus:text-on-brand',
         'focus:outline-none focus:ring-focus focus:ring-offset-2 focus:ring-brand',
         className
       )}

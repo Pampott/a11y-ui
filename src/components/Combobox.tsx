@@ -133,7 +133,7 @@ export function Combobox({
 
   return (
     <div className={cn('relative flex flex-col gap-1', className)}>
-      <label htmlFor={inputId} className="text-sm font-medium text-gray-900">
+      <label htmlFor={inputId} className="text-sm font-medium text-ink">
         {label}
       </label>
 
@@ -149,7 +149,7 @@ export function Combobox({
         aria-describedby={hint ? hintId : undefined}
         autoComplete="off"
         className={cn(
-          'h-10 rounded-token border border-gray-400 px-3 text-base',
+          'h-10 rounded-token border border-line-strong px-3 text-base',
           'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand'
         )}
         placeholder={placeholder}
@@ -168,7 +168,7 @@ export function Combobox({
       />
 
       {hint && (
-        <p id={hintId} className="text-sm text-gray-600">
+        <p id={hintId} className="text-sm text-muted">
           {hint}
         </p>
       )}
@@ -180,11 +180,11 @@ export function Combobox({
           aria-label={label}
           className={cn(
             'absolute top-full z-10 mt-1 max-h-60 w-full overflow-auto',
-            'rounded-token border border-gray-300 bg-white py-1 shadow-lg'
+            'rounded-token border border-line bg-surface py-1 shadow-lg'
           )}
         >
           {filtered.length === 0 && (
-            <li className="px-3 py-2 text-sm text-gray-600" role="option" aria-disabled="true">
+            <li className="px-3 py-2 text-sm text-muted" role="option" aria-disabled="true">
               No results
             </li>
           )}

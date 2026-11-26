@@ -48,7 +48,7 @@ export function DropdownMenu({ trigger, items, align = 'start' }: DropdownMenuPr
           align={align}
           sideOffset={6}
           className={cn(
-            'z-50 min-w-44 rounded-token border border-gray-200 bg-white p-1 shadow-lg',
+            'z-50 min-w-44 rounded-token border border-line bg-surface p-1 shadow-lg',
             'origin-[var(--radix-dropdown-menu-content-transform-origin)]',
             'data-[state=open]:animate-menu-in data-[state=closed]:animate-menu-out',
             'focus-visible:outline-none'
@@ -57,13 +57,13 @@ export function DropdownMenu({ trigger, items, align = 'start' }: DropdownMenuPr
           {items.map((item, index) => (
             <Fragment key={item.id}>
               {item.separatorBefore && index > 0 && (
-                <RadixMenu.Separator className="my-1 h-px bg-gray-200" />
+                <RadixMenu.Separator className="my-1 h-px bg-line" />
               )}
               <RadixMenu.Item
                 disabled={item.disabled}
                 onSelect={item.onSelect}
                 className={cn(
-                  'flex cursor-pointer select-none items-center rounded px-2 py-1.5 text-sm text-gray-900 outline-none',
+                  'flex cursor-pointer select-none items-center rounded px-2 py-1.5 text-sm text-ink outline-none',
                   'data-[highlighted]:bg-brand-subtle data-[highlighted]:text-brand',
                   'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
                   item.tone === 'danger' &&

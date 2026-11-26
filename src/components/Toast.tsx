@@ -160,16 +160,16 @@ function ToastItem({
       onFocus={pause}
       onBlur={schedule}
       className={cn(
-        'pointer-events-auto rounded-token border border-l-4 border-gray-200 bg-white p-4 shadow-lg',
+        'pointer-events-auto rounded-token border border-l-4 border-line bg-surface p-4 shadow-lg',
         toneStyles[toast.tone],
         leaving ? 'animate-toast-out' : 'animate-toast-in'
       )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-medium text-gray-900">{toast.title}</p>
+          <p className="font-medium text-ink">{toast.title}</p>
           {toast.description && (
-            <p className="mt-0.5 text-sm text-gray-700">{toast.description}</p>
+            <p className="mt-0.5 text-sm text-muted">{toast.description}</p>
           )}
         </div>
         <button
@@ -177,7 +177,7 @@ function ToastItem({
           onClick={beginLeave}
           aria-label="Dismiss notification"
           className={cn(
-            'shrink-0 rounded p-1 text-gray-500 hover:text-gray-900',
+            'shrink-0 rounded p-1 text-line-strong hover:text-ink',
             'focus-visible:outline-none focus-visible:ring-focus focus-visible:ring-brand'
           )}
         >

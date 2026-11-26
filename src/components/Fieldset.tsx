@@ -10,6 +10,11 @@ export interface FieldsetProps {
   error?: string;
   /** Marks the group as required, visually and for assistive technology. */
   required?: boolean;
+  /**
+   * Text read by screen readers after the legend of a required group.
+   * Override it to match the page language, e.g. " (obligatoire)".
+   */
+  requiredLabel?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -24,7 +29,15 @@ export interface FieldsetProps {
  * - The error uses role="alert" so it is announced when it appears (3.3.1).
  * - "Required" is written out for screen readers, not left to an asterisk.
  */
-export function Fieldset({ legend, hint, error, required, children, className }: FieldsetProps) {
+export function Fieldset({
+  legend,
+  hint,
+  error,
+  required,
+  requiredLabel = ' (required)',
+  children,
+  className,
+}: FieldsetProps) {
   const id = useId();
   const hintId = `${id}-hint`;
   const errorId = `${id}-error`;
@@ -33,21 +46,21 @@ export function Fieldset({ legend, hint, error, required, children, className }:
 
   return (
     <fieldset aria-describedby={describedBy} className={cn('m-0 min-w-0 border-0 p-0', className)}>
-      <legend className="mb-1.5 p-0 text-sm font-medium text-gray-900">
+      <legend className="mb-1.5 p-0 text-sm font-medium text-ink">
         {legend}
         {required && (
           <>
             <span className="text-danger" aria-hidden="true">
               {' '}*
             </span>
-            <span className="sr-only"> (required)</span>
+            <span className="sr-only">{requiredLabel}</span>
           </>
         )}
       </legend>
 
       <div className="flex flex-col gap-2">
         {hint && (
-          <p id={hintId} className="text-sm text-gray-600">
+          <p id={hintId} className="text-sm text-muted">
             {hint}
           </p>
         )}

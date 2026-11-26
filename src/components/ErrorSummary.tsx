@@ -52,7 +52,7 @@ export function ErrorSummary({
       )}
     >
       <div role="alert" aria-labelledby={titleId}>
-        <h2 id={titleId} className="mb-2 text-lg font-semibold text-gray-900">
+        <h2 id={titleId} className="mb-2 text-lg font-semibold text-ink">
           {title}
         </h2>
         <ul className="flex list-disc flex-col gap-1 pl-5">
